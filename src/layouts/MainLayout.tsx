@@ -10,7 +10,9 @@ const MainLayout = ({ children }: { children: ReactNode }) => {
   return (
     <div>
       <Header />
-      <div className="container py-14">{children}</div>
+      <div className="container py-14">
+        <div>{children}</div>
+      </div>
     </div>
   )
 }

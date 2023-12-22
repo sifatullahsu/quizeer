@@ -3,6 +3,7 @@ type iProps = {
   type?: 'text' | 'password'
   name: string
   placeholder?: string
+  defaultValue?: string
   error?: string
   disabled?: boolean
   className?: string
@@ -13,6 +14,7 @@ const InputText = ({
   type = 'text',
   name,
   placeholder,
+  defaultValue,
   error,
   disabled = false,
   className
@@ -26,6 +28,7 @@ const InputText = ({
         type={type}
         name={name}
         placeholder={placeholder}
+        defaultValue={defaultValue}
         className={`input input-bordered w-full max-w-xs ${className}`}
         disabled={disabled}
       />

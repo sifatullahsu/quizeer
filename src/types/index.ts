@@ -12,7 +12,7 @@ export type AppPropsWithLayout = AppProps & {
 }
 
 export type iChildren = {
-  children: ReactNode
+  children: ReactElement | ReactNode
 }
 
 export type iFormEvent = React.FormEvent<HTMLFormElement>

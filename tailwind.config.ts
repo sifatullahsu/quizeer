@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-var-requires */
 import type { Config } from 'tailwindcss'
 
 const config: Config = {
@@ -25,20 +26,7 @@ const config: Config = {
   },
   plugins: [require('daisyui')],
   daisyui: {
-    themes: [
-      {
-        cupcake: {
-          // eslint-disable-next-line @typescript-eslint/no-var-requires
-          ...require('daisyui/src/theming/themes')['[data-theme=cupcake]'],
-          primary: '#0891B2',
-          secondary: '#1F2937',
-          neutral: '#535353',
-          '--rounded-box': '4px',
-          '--rounded-btn': '4px',
-          '--rounded-badge': '1.9rem'
-        }
-      }
-    ]
+    themes: ['lofi']
   }
 }
 export default config

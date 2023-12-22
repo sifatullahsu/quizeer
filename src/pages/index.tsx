@@ -1,23 +1,14 @@
-const HomePage = () => {
-  // const { data } = useGetUsersQuery({ query: undefined })
-  // console.log(data)
+import Authentication from '@/components/Authentication'
+import MainLayout from '@/layouts/MainLayout'
+import { NextLayout } from '@/types'
+import { useSession } from 'next-auth/react'
 
-  // const { data } = useSession()
-  // console.log(data)
+const HomePage: NextLayout = () => {
+  const { data: session } = useSession()
 
-  // signIn('credentials', {
-  //   email: 'personal.sifat@gmail.com',
-  //   password: '12345',
-  //   redirect: false,
-  //   callbackUrl: ''
-  // })
-
-  return (
-    <div>
-      <div>Home</div>
-      <button className="btn btn-primary">Click Me</button>
-    </div>
-  )
+  return <div>{!session ? <Authentication /> : <></>}</div>
 }
 
 export default HomePage
+
+HomePage.getLayout = page => <MainLayout>{page}</MainLayout>

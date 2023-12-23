@@ -1,20 +1,17 @@
 import { useGetQuizzesQuery } from '@/redux/api/quizApi'
-import Heading from './Heading'
+import { iQuiz } from '@/types'
 import Quiz from './Quiz'
 
-const Quizzes = () => {
+const Quizzes = ({ adminView = false }: { adminView?: boolean }) => {
   const { data: quizzes, isLoading } = useGetQuizzesQuery({ query: undefined })
 
   if (isLoading) return <div>Loading</div>
 
   return (
-    <div>
-      <Heading text="Recommended Quizzes" />
-      <div className="grid grid-cols-1 gap-5">
-        {quizzes.data.map(quiz => (
-          <Quiz key={quiz.id} quiz={quiz} />
-        ))}
-      </div>
+    <div className="grid grid-cols-1 gap-5">
+      {quizzes.data.map((quiz: iQuiz) => (
+        <Quiz key={quiz.id} quiz={quiz} adminView={adminView} />
+      ))}
     </div>
   )
 }

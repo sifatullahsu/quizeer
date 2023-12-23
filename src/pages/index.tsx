@@ -1,4 +1,5 @@
 import Authentication from '@/components/Authentication'
+import Heading from '@/components/Heading'
 import Quizzes from '@/components/Quizzes'
 import MainLayout from '@/layouts/MainLayout'
 import { NextLayout } from '@/types'
@@ -7,7 +8,18 @@ import { useSession } from 'next-auth/react'
 const HomePage: NextLayout = () => {
   const { data: session } = useSession()
 
-  return <div>{!session ? <Authentication /> : <Quizzes></Quizzes>}</div>
+  return (
+    <div>
+      {!session ? (
+        <Authentication />
+      ) : (
+        <>
+          <Heading text="Recommended Quizzes" />
+          <Quizzes></Quizzes>
+        </>
+      )}
+    </div>
+  )
 }
 
 export default HomePage

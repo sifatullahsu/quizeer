@@ -22,7 +22,7 @@ export default function App({ Component, pageProps }: AppPropsWithLayout) {
             }
           `}</style>
           {getLayout(<Component {...otherProps} />)}
-          <SnackbarProvider />
+          <SnackbarProvider maxSnack={2} autoHideDuration={1000} />
         </Auth>
       </Provider>
     </SessionProvider>

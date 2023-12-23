@@ -1,9 +1,10 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import Link from 'next/link'
 import { LuShieldCheck } from 'react-icons/lu'
 import { RxLapTimer } from 'react-icons/rx'
 import { TbMessageStar } from 'react-icons/tb'
 
-const Quiz = ({ quiz }) => {
+const Quiz = ({ quiz }: { quiz: Record<string, any> }) => {
   return (
     <div className="border p-8 rounded-[6px]">
       <div className="grid grid-cols-5">
@@ -25,7 +26,7 @@ const Quiz = ({ quiz }) => {
             <div className="mt-[6px]">{quiz.minimum_point} Minimum</div>
           </div>
           <div className="ml-5">
-            <Link href="" className="btn btn-secondary btn-sm">
+            <Link href={`/battleground/${quiz.id}`} className="btn btn-secondary btn-sm">
               Start Quiz
             </Link>
           </div>

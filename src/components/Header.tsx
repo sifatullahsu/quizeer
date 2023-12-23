@@ -9,7 +9,7 @@ const Header = () => {
   const { data: session } = useSession()
 
   return (
-    <div className="bg-secondary">
+    <div className={`bg-secondary`}>
       <div className="container py-10">
         <div className="flex justify-between items-end">
           <div className="flex items-center gap-5">

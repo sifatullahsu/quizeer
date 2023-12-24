@@ -26,7 +26,6 @@ const Header = () => {
                 <IoHome /> Dashboard
               </MenuItem>
               {session?.user.role === 'admin' && <MenuItem href="/quizzes">Quizzes</MenuItem>}
-              <MenuItem href="/leaderboard">Leaderboard</MenuItem>
               <MenuItem href="/settings">Settings</MenuItem>
               <li>
                 <button

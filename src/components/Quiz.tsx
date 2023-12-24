@@ -26,7 +26,10 @@ const Quiz = ({ quiz, adminView }: { quiz: iQuiz; adminView: boolean }) => {
             <LuShieldCheck className="text-xl inline" />
             <div className="mt-[6px]">{quiz.minimum_point} Minimum</div>
           </div>
-          <div className="ml-5">
+          <div className="ml-5 space-x-2">
+            <Link href={`/leaderboard/${quiz.id}`} className="btn btn-ghost btn-sm">
+              Leaderboard
+            </Link>
             {!adminView ? (
               <Link href={`/battleground/${quiz.id}`} className="btn btn-secondary btn-sm">
                 Start Quiz

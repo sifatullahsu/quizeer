@@ -75,3 +75,19 @@ export type iUser = {
   createdAt: Date
   updatedAt: Date
 }
+
+export type iPerformance = {
+  id: string
+  user_id: string
+  quiz_id: string
+  total_questions: number
+  total_point: number
+  minimum_point: number
+  correct_answer: number
+  score: number
+  status: 'passed' | 'failed'
+  users: iUser
+  quizzes: iQuiz
+  createdAt: Date
+  updatedAt: Date
+}

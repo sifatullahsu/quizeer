@@ -1,7 +1,7 @@
 /* eslint-disable @typescript-eslint/ban-types */
 import type { NextPage } from 'next'
 import type { AppProps } from 'next/app'
-import { ReactElement, ReactNode } from 'react'
+import { ChangeEvent, ReactElement, ReactNode } from 'react'
 
 export type NextLayout<P = {}, IP = P> = NextPage<P, IP> & {
   getLayout?: (page: ReactElement) => ReactNode
@@ -90,4 +90,25 @@ export type iPerformance = {
   quizzes: iQuiz
   createdAt: Date
   updatedAt: Date
+}
+
+export type iChangeEvent = ChangeEvent<HTMLInputElement> | ChangeEvent<HTMLTextAreaElement>
+
+export type iQuizForm = {
+  title: string
+  short_description: string
+  description: string
+  total_point: string
+  minimum_point: string
+  duration: string
+  questions: {
+    title: string
+    description: string
+    point: string
+    remark: string
+    options: {
+      text: string
+      is_correct: boolean
+    }[]
+  }[]
 }

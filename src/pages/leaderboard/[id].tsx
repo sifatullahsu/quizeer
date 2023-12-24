@@ -19,6 +19,7 @@ const LeaderboardPage: NextLayout = () => {
           <Leaderboard key={performance.id} performance={performance} />
         ))}
       </div>
+      {leaderboard.data.length === 0 && <div>No records found.</div>}
     </div>
   )
 }

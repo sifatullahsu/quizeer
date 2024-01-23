@@ -1,4 +1,6 @@
 import { iQuiz } from '@/types'
+import { useSession } from 'next-auth/react'
+import Link from 'next/link'
 import React, { Dispatch } from 'react'
 import { LuShieldCheck } from 'react-icons/lu'
 import { RxLapTimer } from 'react-icons/rx'
@@ -12,6 +14,7 @@ const BeforeQuiz = ({
   quiz: iQuiz
   setIsStarted: Dispatch<React.SetStateAction<boolean>>
 }) => {
+  const { data: session } = useSession()
   return (
     <div className="grid grid-cols-5">
       <div className="col-span-3">
@@ -34,9 +37,25 @@ const BeforeQuiz = ({
           </div>
         </div>
         <div className="mt-10 text-right ">
-          <button className="btn btn-secondary btn-sm" onClick={() => setIsStarted(prev => !prev)}>
-            Start Quiz
-          </button>
+          <div className="space-x-3">
+            <Link className="btn btn-sm" href="/">
+              Back
+            </Link>
+            <button
+              className="btn btn-secondary btn-sm"
+              onClick={() => setIsStarted(prev => !prev)}
+              disabled={session?.user.role === 'admin'}
+            >
+              Start Quiz
+            </button>
+          </div>
+          {session?.user.role === 'admin' && (
+            <p className="text-xs text-red-500 mt-5">
+              The admin is unable to initiate the quiz.
+              <br />
+              Please login as a performer.
+            </p>
+          )}
         </div>
       </div>
     </div>

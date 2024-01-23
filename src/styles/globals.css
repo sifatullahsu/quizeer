@@ -27,3 +27,7 @@ body {
 .top-border {
   @apply border-t-8 border-secondary
 }
+
+.menu li>*:not(ul):not(.menu-title):not(details):active, .menu li>*:not(ul):not(.menu-title):not(details).active, .menu li>details>summary:active {
+  background-color: hsl(var(--s) / var(--tw-bg-opacity)) !important;
+}

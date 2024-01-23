@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
 /* eslint-disable @typescript-eslint/no-explicit-any */
 export function getRandom(list: any[] | undefined) {
   if (!list) return list
@@ -27,4 +28,27 @@ export function formatDateTime(isoDateTimeString: Date) {
     .padStart(2, '0')} ${hours.toString().padStart(2, '0')}:${minutes.toString().padStart(2, '0')} ${amPM}`
 
   return formattedDateTime
+}
+
+export function removeTimestamps(quizData: any) {
+  const { createdAt, updatedAt, ...dataWithoutTimestamps } = quizData
+
+  function removeTimestampsFromOptions(options: any) {
+    return options.map((option: any) => {
+      const { createdAt, updatedAt, ...optionWithoutTimestamps } = option
+      return optionWithoutTimestamps
+    })
+  }
+
+  function removeTimestampsFromQuestions(questions: any): any {
+    return questions.map((question: any) => {
+      const { createdAt, updatedAt, ...questionWithoutTimestamps } = question
+      questionWithoutTimestamps.options = removeTimestampsFromOptions(question.options)
+      return questionWithoutTimestamps
+    })
+  }
+
+  dataWithoutTimestamps.questions = removeTimestampsFromQuestions(dataWithoutTimestamps.questions)
+
+  return dataWithoutTimestamps
 }

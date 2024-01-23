@@ -1,5 +1,6 @@
 import { signOut, useSession } from 'next-auth/react'
 import Image from 'next/image'
+import { useRouter } from 'next/router'
 import { FiLogOut } from 'react-icons/fi'
 import { IoHome } from 'react-icons/io5'
 import userImg from '../assets/user.png'
@@ -7,6 +8,8 @@ import MenuItem from './MenuItem'
 
 const Header = () => {
   const { data: session } = useSession()
+  const { pathname } = useRouter()
+  const pageName = pathname.split('/')[1]
 
   return (
     <div className={`bg-secondary`}>
@@ -22,16 +25,27 @@ const Header = () => {
           </div>
           <div>
             <ul className="menu menu-vertical header-menu lg:menu-horizontal bg-accent text-white rounded-box">
-              <MenuItem href="/">
+              <MenuItem href="/" active={pathname === '/'}>
                 <IoHome /> Dashboard
               </MenuItem>
-              {session?.user.role === 'admin' && <MenuItem href="/quizzes">Quizzes</MenuItem>}
-              <MenuItem href="/settings">Settings</MenuItem>
+              {session?.user.role === 'admin' ? (
+                <MenuItem href="/quizzes" active={pageName === 'quizzes'}>
+                  Quizzes
+                </MenuItem>
+              ) : (
+                <MenuItem href="/my-results" active={pageName === 'my-results'}>
+                  My Results
+                </MenuItem>
+              )}
+              <MenuItem href="/settings" active={pageName === 'settings'}>
+                Settings
+              </MenuItem>
               <li>
                 <button
                   onClick={() => {
                     signOut({
-                      redirect: false
+                      redirect: true,
+                      callbackUrl: '/'
                     })
                   }}
                 >

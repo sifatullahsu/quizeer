@@ -5,16 +5,26 @@ import { FaPlus } from 'react-icons/fa'
 import { TiMinus } from 'react-icons/ti'
 import 'tailwindcss/tailwind.css'
 
-const MyFormComponent = ({ handleSubmission }: { handleSubmission: (data: iQuizForm) => void }) => {
-  const [formData, setFormData] = useState<iQuizForm>({
-    title: '',
-    short_description: '',
-    description: '',
-    total_point: '',
-    minimum_point: '',
-    duration: '',
-    questions: []
-  })
+const MyFormComponent = ({
+  handleSubmission,
+  theData = null,
+  submitText
+}: {
+  handleSubmission: (data: iQuizForm) => void
+  theData?: iQuizForm | null
+  submitText: string
+}) => {
+  const [formData, setFormData] = useState<iQuizForm>(
+    theData || {
+      title: '',
+      short_description: '',
+      description: '',
+      total_point: '',
+      minimum_point: '',
+      duration: '',
+      questions: []
+    }
+  )
 
   const handleInputChange = (name: string, value: any) => {
     setFormData(prevData => ({
@@ -282,7 +292,7 @@ const MyFormComponent = ({ handleSubmission }: { handleSubmission: (data: iQuizF
       </div>
 
       <button type="submit" className="mt-6 btn btn-secondary px-10">
-        Submit
+        {submitText}
       </button>
     </form>
   )

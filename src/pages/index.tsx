@@ -12,6 +12,10 @@ const HomePage: NextLayout = () => {
     <div>
       {!session ? (
         <Authentication />
+      ) : session.user.role === 'admin' ? (
+        <>
+          <Heading text="Quiz Dashboard" />
+        </>
       ) : (
         <>
           <Heading text="Recommended Quizzes" />

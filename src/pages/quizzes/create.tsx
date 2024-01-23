@@ -24,8 +24,7 @@ const CreateQuizPage: NextLayout = () => {
   return (
     <div>
       <Heading text="Create New Quiz" />
-      {/* <QuizForm /> */}
-      <MyFormComponent handleSubmission={handleSubmission} />
+      <MyFormComponent handleSubmission={handleSubmission} submitText="Create Now" />
     </div>
   )
 }

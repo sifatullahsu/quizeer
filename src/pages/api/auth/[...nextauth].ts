@@ -40,7 +40,10 @@ const options: NextAuthOptions = {
     signIn: '/login'
   },
   callbacks: {
-    async jwt({ token, user }) {
+    async jwt({ token, user, trigger, session }) {
+      if (trigger === 'update') {
+        token = { ...token, ...session }
+      }
       return { ...token, ...user }
     },
     async session({ token, session }) {

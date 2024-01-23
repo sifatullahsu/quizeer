@@ -10,7 +10,7 @@ import { useSession } from 'next-auth/react'
 import { enqueueSnackbar } from 'notistack'
 
 const SettingsPage: NextLayout = () => {
-  const { data: session } = useSession()
+  const { data: session, update } = useSession()
   const [updateUser, { isLoading }] = useUpdateUserMutation()
 
   const submitHandler = async (form: any) => {
@@ -21,6 +21,7 @@ const SettingsPage: NextLayout = () => {
 
     if (res?.success) {
       enqueueSnackbar('User update successfull.', { variant: 'success' })
+      await update({ name, email })
     } else {
       enqueueSnackbar('Somthing is wrong.', { variant: 'error' })
     }

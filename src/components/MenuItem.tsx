@@ -9,8 +9,10 @@ type iProps = {
 
 const MenuItem = ({ children, href, active = false }: iProps) => {
   return (
-    <li className={`${active && 'active'}`}>
-      <Link href={href}>{children}</Link>
+    <li className={`${active ? 'active' : ''}`}>
+      <Link href={href} className={`!text-white ${active ? 'active' : ''}`}>
+        {children}
+      </Link>
     </li>
   )
 }

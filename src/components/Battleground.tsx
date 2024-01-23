@@ -4,7 +4,7 @@ import { useSession } from 'next-auth/react'
 import Image from 'next/image'
 import Link from 'next/link'
 import { enqueueSnackbar } from 'notistack'
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import submit from '../assets/submit.png'
 import Heading from './Heading'
 
@@ -126,6 +126,20 @@ const Battleground = ({ quiz }: { quiz: Required<iQuiz> }) => {
     }
   }
 
+  useEffect(() => {
+    const handleBeforeUnload = (event: BeforeUnloadEvent) => {
+      const message = 'Are you sure you want to leave? Your changes may not be saved.'
+      event.returnValue = message
+      return message
+    }
+
+    window.addEventListener('beforeunload', handleBeforeUnload)
+
+    return () => {
+      window.removeEventListener('beforeunload', handleBeforeUnload)
+    }
+  }, [])
+
   const question = data.questions![data.current]
 
   return (
@@ -149,9 +163,7 @@ const Battleground = ({ quiz }: { quiz: Required<iQuiz> }) => {
                       onChange={e => changeHandler(e.target.value, e.target.checked)}
                     />
                     <span className="label-text">
-                      <div>
-                        {option.text} <span className="block font-">{`${option.is_correct}`}</span>
-                      </div>
+                      <div>{option.text}</div>
                     </span>
                   </label>
                 </div>
